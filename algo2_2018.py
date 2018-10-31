@@ -13,7 +13,6 @@ Partie 1 : Sous-arbre de poids Maximum
 
 """
 
-
 from random import randint
 
 class tree:
@@ -66,17 +65,9 @@ def max_subtree(arbre):
 					sous_arbre = tree(arbre.value)
 				sous_arbre.add(k)
 	return sous_arbre
-
+	
 def test_enonce():
-
-"""
-Partie 2 : Les hypergraphes et hypertree
-
-"""
-
-if __name__ == "__main__":
 	arbre = tree(2)
-
 	a = tree(-5)
 	b = tree(-1)
 	c = tree(4)
@@ -120,6 +111,13 @@ def test_negatif():
 	b.add(e)
 	print(arbre)
 	print(max_subtree(arbre))
+
+"""
+Partie 2 : Les hypergraphes et hypertree
+
+"""
+
+
 if __name__ == "__main__":
 	test_enonce()
 	print()
