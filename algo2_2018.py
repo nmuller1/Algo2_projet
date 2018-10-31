@@ -18,6 +18,7 @@ from random import randint
 class tree:
 	def __init__(self, root):
 		self.value = root
+		self.size = 1
 		self.level = 0
 		self.parent = None
 		self.childs = []
