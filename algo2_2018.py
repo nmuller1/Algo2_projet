@@ -19,6 +19,7 @@ from random import randint
 class tree:
 	def __init__(self, root):
 		self.value = root
+		self.level = 0
 		self.size = 1
 		self.parent = None
 		self.childs = []
@@ -33,7 +34,6 @@ class tree:
 		return res
 
 	def add(self, value):
-		if value != None:
 			sousArbre = value #value doit etre de type tree
 			sousArbre.parent = self
 			self.size += 1
@@ -54,7 +54,6 @@ class tree:
 
 def max_subtree(arbre):
 	"""Retourne le sous-arbre de plus grande valeur de l'arbre passé en paramètre"""
-	sous_arbre = None
 	if arbre.childs == []: #Si l'arbre est feuille
 		sous_arbre = arbre
 	else:
@@ -71,6 +70,7 @@ def max_subtree(arbre):
 				sous_arbre.add(k)
 	return sous_arbre
 
+def test_enonce():
 
 """
 Partie 2 : Les hypergraphes et hypertree
@@ -94,26 +94,19 @@ if __name__ == "__main__":
 	l = tree(-1)
 	m = tree(3)
 	n = tree(-1)
-
 	arbre.add(a)
 	arbre.add(b)
-
 	d.add(i)
 	d.add(j)
-
 	g.add(k)
 	j.add(l)
 	m.add(n)
 	j.add(m)
-
 	a.add(c)
 	a.add(d)
 	a.add(e)
-
 	b.add(f)
 	b.add(g)
 	b.add(h)
-
-
 	print(arbre)
 	print(max_subtree(arbre))
