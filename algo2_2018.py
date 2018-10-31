@@ -1,3 +1,5 @@
+"Partie 1"
+
 from random import randint
 
 class tree:
