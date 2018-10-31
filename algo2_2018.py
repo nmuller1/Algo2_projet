@@ -20,7 +20,6 @@ class tree:
 	def __init__(self, root):
 		self.value = root
 		self.level = 0
-		self.size = 1
 		self.parent = None
 		self.childs = []
 
@@ -34,13 +33,10 @@ class tree:
 		return res
 
 	def add(self, value):
+		if value != []:
 			sousArbre = value #value doit etre de type tree
 			sousArbre.parent = self
-			self.size += 1
-			k = self #pour modifier la taille des parents
-			while k.parent != None:
-				k = self.parent
-				k.size+=1
+			sousArbre.level = self.level + 1
 			self.childs.append(sousArbre)
 
 	def get_child(self, number):
@@ -54,6 +50,7 @@ class tree:
 
 def max_subtree(arbre):
 	"""Retourne le sous-arbre de plus grande valeur de l'arbre passé en paramètre"""
+	sous_arbre = []
 	if arbre.childs == []: #Si l'arbre est feuille
 		sous_arbre = arbre
 	else:
@@ -63,7 +60,7 @@ def max_subtree(arbre):
 				check = True #si le noeud est positif, on le prend toujours
 				sous_arbre = tree(arbre.value) 
 			k =  max_subtree(i)
-			if k.somme() > 0: #on cherche un sous-arbre de poids positif
+			if k!= [] and k.somme() > 0:
 				if not check:
 					check = True
 					sous_arbre = tree(arbre.value)
@@ -110,3 +107,20 @@ if __name__ == "__main__":
 	b.add(h)
 	print(arbre)
 	print(max_subtree(arbre))
+	
+def test_negatif():
+	arbre = tree(-2)
+	b = tree(-4)
+	c = tree(-1)
+	d = tree(0)
+	e = tree(-5)
+	arbre.add(b)
+	arbre.add(c)
+	b.add(d)
+	b.add(e)
+	print(arbre)
+	print(max_subtree(arbre))
+if __name__ == "__main__":
+	test_enonce()
+	print()
+	test_negatif()
