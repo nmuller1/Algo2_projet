@@ -1,4 +1,18 @@
-"Partie 1"
+"""
+Projet Algo 2
+"""
+
+__author__ = "Noëmie Muller & Pascal Tribel" 
+__matricule__ = "000458865 & 000461792"
+__date__ = "15/11/2018"
+__cours__ = "info"
+__asistant__ = "Keno Merckx"
+
+"""
+Partie 1 : Sous-arbre de poids Maximum
+
+"""
+
 
 from random import randint
 
@@ -40,11 +54,11 @@ def max_subtree(arbre):
 	if arbre.childs == []: #Si l'arbre est feuille
 		sous_arbre = arbre
 	else:
-		check = False
+		check = False #flag qui indique si la solution a déjà été créée
 		for i in arbre.childs:
 			if not check and arbre.value >= 0:
-				check = True
-				sous_arbre = tree(arbre.value)
+				check = True #si le noeud est positif, on le prend toujours
+				sous_arbre = tree(arbre.value) 
 			k =  max_subtree(i)
 			if k!= [] and k.somme() > 0:
 				if not check:
@@ -52,11 +66,17 @@ def max_subtree(arbre):
 					sous_arbre = tree(arbre.value)
 				sous_arbre.add(k)
 	return sous_arbre
-		
-	
 
 def test_enonce():
+
+"""
+Partie 2 : Les hypergraphes et hypertree
+
+"""
+
+if __name__ == "__main__":
 	arbre = tree(2)
+
 	a = tree(-5)
 	b = tree(-1)
 	c = tree(4)
