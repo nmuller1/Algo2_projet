@@ -1,7 +1,7 @@
 """
 Projet Algo 2
 """
-
+# *- coding: utf-8 - *-
 __author__ = "Noëmie Muller & Pascal Tribel" 
 __matricule__ = "000458865 & 000461792"
 __date__ = "15/11/2018"
@@ -112,11 +112,6 @@ def test_negatif():
 	b.add(e)
 	print(arbre)
 	print(max_subtree(arbre))
-
-"""
-Partie 2 : Les hypergraphes et hypertree
-
-"""
 
 
 if __name__ == "__main__":
