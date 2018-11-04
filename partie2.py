@@ -34,20 +34,26 @@ class HyperArete:
 		for i in self.nodes:
 			i.appendHyperArete(self)
 	def __str__(self):
-		res = "Cette hyper-arête contient les noeuds suivants: \n"
+		res = "L'hyper-arête contient les noeuds suivants: \n"
 		for i in self.nodes:
 			res+=". "+str(i)+"\n"
 		return res
 
 class HyperGraph:
-	def __init__(self, *nodes, *hyperAretes):
+	def __init__(self, nodes, hyperAretes):
 		self.nodes = nodes
 		self.hyperAretes = hyperAretes
+	
+	def __str__(self):
+		res = "L'hypergraphe contient les hyper-arête suivants: \n"
+		for i in self.hyperAretes:
+			res+=". "+str(i)+"\n"
+		return res
 	
 
 if __name__ == "__main__":
 	a, b, c, d = Node(1), Node(2), Node(3), Node(4)
 	k = HyperArete(a, b, c)
 	l = HyperArete(b, c, d)
-	print(k)
-	print(l)
+	H = HyperGraph([a,b,c,d],[k,l])
+	print(H)
