@@ -1,9 +1,9 @@
 #Partie 2
 
 class Node:
-	def __init__(self, v, h=[]):
-		self.value = v
-		self.hyperAretes = h
+	def __init__(self, value, hyperAretes=[]):
+		self.value = value
+		self.hyperAretes = hyperAretes
 	def __str__(self):
 		return str(self.value)
 	def getValue(self):
@@ -23,6 +23,11 @@ class HyperArete:
 		for i in self.nodes:
 			res+=". "+str(i)+"\n"
 		return res
+
+class HyperGraph:
+	def __init__(self, *nodes, *hyperAretes):
+		self.nodes = nodes
+		self.hyperAretes = hyperAretes
 	
 
 if __name__ == "__main__":
