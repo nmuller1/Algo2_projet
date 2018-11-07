@@ -1,8 +1,5 @@
 #Partie 2
 
-<<<<<<< HEAD
-class hypergraphe(Object) :
-=======
 class Node:
     def __init__(self, value):
         """
@@ -103,13 +100,4 @@ def initG():
     return H
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     H = initG()
-=======
-	a, b, c, d = Node(1), Node(2), Node(3), Node(4)
-	k = HyperArete(a, b, c)
-	l = HyperArete(b, c, d)
-	H = HyperGraph([a,b,c,d],[k,l])
-	print(H)
->>>>>>> 65ce700342e82d9ad29edc4212fb10b95d7b1dcc
->>>>>>> 9d123bdfd6e911bd1ccb98493f441dac7d8128d1
