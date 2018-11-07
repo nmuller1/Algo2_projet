@@ -19,13 +19,11 @@ def primalGraph(graph):
     primal = Graph()
     for node in graph.nodes:    #pour chaque noeud de l'hypergraphe
         primal.appendNode(node) #on ajoute le noeud au graphe primal
-        for hyperArete in node.getHyperAretes():
-            for otherNode in hyperArete.getNodes():
-                primal.makePointNode(node, otherNode)
+        for hyperArete in node.getHyperAretes(): #pour chaque hyperarete dans les hyperaretes de ce noeud
+            for otherNode in hyperArete.getNodes(): # pour chaque noeud de cette hyperarete
+                primal.makePointNode(node, otherNode) #on l'ajoute au graphe primal
     return primal
 
 if __name__=="__main__":
     H = initG()
-    print(H)
-    print("________________________________")
     print(primalGraph(H))

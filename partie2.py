@@ -86,7 +86,7 @@ class Graph:
             self.nodes[node] = []
             
     def makePointNode(self, node, otherNode):
-        if node in self.nodes:
+        if node in self.nodes and otherNode not in self.nodes[node]:
             self.nodes[node].append(otherNode)
 
 def initG():
