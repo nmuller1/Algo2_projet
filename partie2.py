@@ -46,6 +46,9 @@ class HyperArete:
             i.appendHyperArete(self)
             
     def __str__(self):
+        return self.getName()+": "+str([str(i) for i in self.nodes])
+
+    def getName(self):
         return self.name
     
     def getNodes(self):
@@ -58,7 +61,18 @@ class HyperGraph:
         self.hyperAretes = hyperAretes
 		
     def __str__(self):
-    	return self.name
+    	return self.getName()+": "+str([str(i) for i in self.hyperAretes])
+
+    def getName(self):
+        return self.name
+
+    def addHyperArete(self, h):
+        if h not in self.hyperAretes:
+            self.hyperAretes.append(h)
+
+    def addNode(self, n):
+        if n not in self.nodes:
+            self.nodes.append(n)
     
     def getHyperAretes(self):
         return self.hyperAretes
@@ -72,12 +86,13 @@ class Graph:
     """
     def __init__(self):
         self.nodes = {}
+        
     def __str__(self):
         res = ""
         for k in self.nodes:
-            res += str(k) + ": "
+            res += str(k.getValue()) + ": "
             for i in self.nodes[k]:
-                res += str(i) + " "
+                res += str(i.getValue()) + " "
             res += "\n"
         return res
     
