@@ -8,18 +8,17 @@ def incidenceGraph(graph):
     Cette fonction renvoie le graphe d'incidence
     """
     incidenceG = Graph()
-    for h in graph.getHyperAretes(): #pour chaque hyperarete
-        c = Node(h.getName()) #l'hyperarete devient un noeud
-        incidenceG.appendNode(c) #qu'on ajoute au graphe d'incidence
-        for n in h.getNodes(): #et auquel chaque noeud de l'hyperarete est reliée
-            incidenceG.makePointNode(c, n)
+    for n in graph.getNodes(): #pour chaque Noeud #l'hyperarete devient un noeud
+        incidenceG.appendNode(n) #qu'on ajoute au graphe d'incidence
+        for h in n.getHyperAretes(): #et auquel chaque hyperArete du noeud est reliée
+            c = HyperNode(h.getName())
+            incidenceG.makePointNode(n, c)
     return incidenceG
 
 def primalGraph(graph):
     """
     Retourne le graphe primal de l'hypergraphe passé en paramètre, c'est à dire le graphe où les sommets appartenants à la même hyper-arête
     sont reliés entre eux
-    C'est réalisé pour l'exercice, mais la manière dont l'hypergraphe est stocké ressemble très fort à cette structure 
     """
     primal = Graph()
     for node in graph.nodes:    #pour chaque noeud de l'hypergraphe
