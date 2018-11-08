@@ -46,6 +46,21 @@ def dualGraph(graph):
 def isCordal(graph):
     """
     Renvoie True si le graphe est cordal (ie. si tous ses cycles de 4 noeuds ou plus sont cordaux), False sinon
+    --> Fulkerson et Gross
+    """
+    pass
+
+def getMaximalClique(graph):
+    """
+    Renvoie une liste contenant les cliques maximales de taille 2 ou plus de l'hypergraphe passé en parametre, une liste vide si il
+    n'en existe pas
+    --> Bron-Kerbosch
+    """
+    pass
+
+def getCycles(graph):
+    """
+    Renvoie les cycles de 4 noeuds ou plus
     """
     pass
 
@@ -54,6 +69,7 @@ def isAlphaAcyclic(graph):
     Renvoie True si le graphe est aplha-acyclique (ie. si son graphe primal est cordal, et que toute clique maximale de taille 2 ou plus
     est une hyper-arête dans l'hypergraphe), False sinon
     """
+    pass
 
 def test():
     H = initG()
