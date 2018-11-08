@@ -17,7 +17,8 @@ def incidenceGraph(graph):
 
 def primalGraph(graph):
     """
-    Retourne le graphe primal de l'hypergraphe passé en paramètre, c'est à dire le graphe où les sommets appartenants à la même hyper-arête sont reliés entre eux
+    Retourne le graphe primal de l'hypergraphe passé en paramètre, c'est à dire le graphe où les sommets appartenants à la même hyper-arête
+    sont reliés entre eux
     """
     primal = Graph()
     for node in graph.nodes:    #pour chaque noeud de l'hypergraphe
@@ -41,11 +42,24 @@ def dualGraph(graph):
         dual.addHyperArete(HyperArete(str(node.getValue()), newNodes)) #On ajoute la nouvelle arete au graphe dual
     return dual
 
+def isCordal(graph):
+    """
+    Renvoie True si le graphe est cordal (ie. si tous ses cycles de 4 noeuds ou plus sont cordaux), False sinon
+    """
+    pass
+
+def isAlphaAcyclic(graph):
+    """
+    Renvoie True si le graphe est aplha-acyclique (ie. si son graphe primal est cordal, et que toute clique maximale de taille 2 ou plus
+    est une hyper-arête dans l'hypergraphe), False sinon
+    """
+
 def test():
     H = initG()
-    print(H, end="\n______________________________________\n")
-    print(incidenceGraph(H), end="\n______________________________________\n")
-    print(primalGraph(H), end="\n______________________________________\n")
-    print(dualGraph(H), end="\n______________________________________\n")
+    print("Test des fonctions du fichier Functions.py", sep="", end="\n______________________________________\n")
+    print("Graphe\n", H, end="\n______________________________________\n")
+    print("Graphe d'incidence\n",incidenceGraph(H), sep="", end="\n______________________________________\n")
+    print("Graphe primal\n", primalGraph(H), sep="", end="\n______________________________________\n")
+    print("Graphe dual\n", dualGraph(H), sep="", end="\n______________________________________\n")
 if __name__=="__main__":
     test()

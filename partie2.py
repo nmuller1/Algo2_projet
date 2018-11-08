@@ -85,7 +85,7 @@ class Graph:
     Cette classe désigne les graphe "simples", c'est-à-dire sans hyper-arêtes
     """
     def __init__(self):
-        self.nodes = {}
+        self.nodes  = {}
         
     def __str__(self):
         res = ""
@@ -108,10 +108,13 @@ def initG():
     """
     Fonction de test qui crée un hyper-graphe
     """
-    a, b, c, d = HyperNode(1), HyperNode(2), HyperNode(3), HyperNode(4)
-    k = HyperArete("k", [a, b, c])
-    l = HyperArete("l", [b, c, d])
-    H = HyperGraph("H", [a,b,c,d],[k,l])
+    a, b, c, d, e, f, g, h, i= HyperNode(1), HyperNode(2), HyperNode(3), HyperNode(4), HyperNode(5), HyperNode(6), HyperNode(7), HyperNode(8), HyperNode(9)
+    v = HyperArete("v", [a, b, d])
+    w = HyperArete("w", [c, e, f, h])
+    x = HyperArete("x", [d, e, f])
+    y = HyperArete("y", [e, f, h, i])
+    z = HyperArete("z", [i])
+    H = HyperGraph("H", [a, b, c, d, e, f, g, h, i],[v, w, x, y, z])
     return H
 
 if __name__ == "__main__":
