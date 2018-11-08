@@ -25,8 +25,9 @@ def primalGraph(graph):
     for node in graph.nodes:    #pour chaque noeud de l'hypergraphe
         primal.appendNode(node) #on ajoute le noeud au graphe primal
         for hyperArete in node.getHyperAretes(): #pour chaque hyperarete dans les hyperaretes de ce noeud
-            for otherNode in hyperArete.getNodes(): # pour chaque noeud de cette hyperarete
-                primal.makePointNode(node, otherNode) #on l'ajoute au graphe primal
+            for otherNode in hyperArete.getNodes():# pour chaque noeud de cette hyperarete
+                if otherNode is not node:
+                    primal.makePointNode(node, otherNode) #on l'ajoute au graphe primal
     return primal
 
 def dualGraph(graph):
