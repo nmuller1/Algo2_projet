@@ -9,7 +9,7 @@ class Node:
         
     def __str__(self):
         return str(self.value)
-            
+
     def getValue(self):
         return self.value
             
@@ -23,7 +23,7 @@ class HyperNode(Node):
         """
         super().__init__(value)
         self.hyperAretes = []
-            
+    
     def appendHyperArete(self, h):
         """
         Permet d'annoncer que le noeud appartient à l'hyper-arête h
@@ -47,7 +47,7 @@ class HyperArete:
             
     def __str__(self):
         return self.getName()+": "+str([str(i) for i in self.nodes])
-
+    
     def getName(self):
         return self.name
     
@@ -88,26 +88,52 @@ class Graph:
     Cette classe désigne les graphe "simples", c'est-à-dire sans hyper-arêtes
     """
     def __init__(self):
-        self.nodes  = {}
+        self.nodes = {}
         
     def __str__(self):
         res = ""
         for k in self.nodes:
             res += str(k.getValue()) + ": "
-            for i in self.nodes[k]:
-                res += str(i.getValue()) + " "
-            res += "\n"
+            if self.nodes[k]:
+                for i in self.nodes[k]:
+                    res += str(i.getValue()) + " "
+                res += "\n"
         return res
+
+    def __eq__(self, other):
+        return self.nodes == other.nodes
+
+    def copy(self):
+        new = Graph()
+        for key in self.nodes:
+            new.appendNode(key, self.nodes[key])
+        return new
+
+    def size(self):
+        return len(list(self.nodes.keys()))
     
-    def appendNode(self, node):
-        if node not in self.nodes:
+    def appendNode(self, node, pointedNodes=0):
+        if node not in list(self.nodes.keys()) and pointedNodes==0:
             self.nodes[node] = []
-            
+        elif node not in self.nodes:
+            self.nodes[node] = pointedNodes
+
+    def delNode(self, node):
+        if node in list(self.nodes.keys()):
+            del self.nodes[node]
+        
     def makePointNode(self, node, otherNode):
         if node in self.nodes and otherNode not in self.nodes[node]:
             self.nodes[node].append(otherNode)
 
-def initG():
+    def getNodes(self):
+        return self.nodes
+
+    def getVoisins(self, n):
+        if n in list(self.nodes.keys()):
+            return self.nodes[n]
+
+def initH():
     """
     Fonction de test qui crée un hyper-graphe
     """
@@ -120,5 +146,11 @@ def initG():
     H = HyperGraph("H", [a, b, c, d, e, f, g, h, i],[v, w, x, y, z])
     return H
 
+def initG():
+    a, b, c, d = HyperNode("v1"), HyperNode("v2"), HyperNode("v3"), HyperNode("v4")
+    v = HyperArete("E1", [a, b, d])
+    w = HyperArete("E2", [a, c])
+    G = HyperGraph("H", [a, b, c, d],[v, w])
+    return G
 if __name__ == "__main__":
     H = initG()

@@ -43,6 +43,25 @@ def dualGraph(graph):
         dual.addHyperArete(HyperArete("E"+str(node.getValue()), newNodes)) #On ajoute la nouvelle arete au graphe dual
     return dual
 
+def isConnexe(graph, n1, n2):
+    """
+    Retourne True si n1 et n2 sont connexes, False sinon (dans un graphe normal)
+    """
+    res = False
+    for hyperArete in n1.getHyperAretes():
+        res = res or (n2 in hyperArete.getNodes())
+    return res
+
+def isComplet(graph):
+    """
+    Renvoie True si le graphe est complet, False sinon
+    """
+    res = True
+    for n in graph.getNodes():
+        for m in graph.getNodes():
+            res = res and isConnexe(graph, n, m)
+    return res
+
 def isCordal(graph):
     """
     Renvoie True si le graphe est cordal (ie. si tous ses cycles de 4 noeuds ou plus sont cordaux), False sinon
@@ -50,14 +69,45 @@ def isCordal(graph):
     """
     pass
 
-def getMaximalClique(graph):
+def getMaximalCliqueFromNode(n, graph):
     """
-    Renvoie une liste contenant les cliques maximales de taille 2 ou plus de l'hypergraphe passé en parametre, une liste vide si il
+    Renvoie une liste contenant la clique maximale de taille 2 ou plus du graphe passé en parametre, partant du noeud n, une liste vide si il
     n'en existe pas
-    --> Bron-Kerbosch
     """
-    pass
+    res = Graph()
+    res.appendNode(n, graph.getVoisins(n))
+    for noeud in (graph.getNodes().keys()):
+        res.appendNode(noeud, graph.getVoisins(noeud))
+        if not isComplet(res):
+            res.delNode(noeud)
+    return res
+    
+def getMaximalCliques(graph):
+    p = []
+    maxi = 2
+    for noeud in graph.getNodes():
+        maxClique = getMaximalCliqueFromNode(noeud, graph)
+        if maxClique.size()==maxi and maxClique not in p:
+            p.append(maxClique)
+        elif maxClique.size()>maxi:
+            p = [maxClique]
+            maxi = maxClique.size()
+    return p
 
+def isCliqueHyperArete(clique, hyperGraph):
+    res = False
+    for hyperArete in hyperGraph.hyperAretes:
+        if clique == hyperArete.nodes:
+            res = True
+            break
+    return res
+
+def areCliquesHyperAretes(cliques, hyperGraph):
+    res = True
+    for clique in cliques:
+        res = res or isCliqueHyperArete(clique, hyperGraph)
+    return res
+        
 def getCycles(graph):
     """
     Renvoie les cycles de 4 noeuds ou plus
@@ -76,7 +126,15 @@ def test():
     print("Test des fonctions du fichier Functions.py", sep="", end="\n______________________________________\n")
     print("Graphe\n", H, sep="", end="\n______________________________________\n")
     print("Graphe d'incidence\n",incidenceGraph(H), sep="", end="\n______________________________________\n")
-    print("Graphe primal\n", primalGraph(H), sep="", end="\n______________________________________\n")
+    p = primalGraph(H)
+    print("Graphe primal\n", p, "\n", sep="", end="\n______________________________________\n")
     print("Graphe dual\n", dualGraph(H), sep="", end="\n______________________________________\n")
+    print("Teste si les noeuds v2 et v5 sont connexes: ", isConnexe(H, H.getNodes()[1], H.getNodes()[4]), sep="", end="\n______________________________________\n")
+    print("Teste si les noeuds v1 et v4 sont connexes: ", isConnexe(H, H.getNodes()[0], H.getNodes()[3]), sep="", end="\n______________________________________\n")
 if __name__=="__main__":
-    test()
+    H = initH()
+    print(H)
+    print(incidenceGraph(H), end="\n______________________\n")
+    print(dualGraph(H), end="\n______________________\n")
+    print(primalGraph(H), end="\n______________________\n")
+    print("Test Cliques: ", areCliquesHyperAretes(getMaximalCliques(primalGraph(H)), H), end="\n______________________\n")
