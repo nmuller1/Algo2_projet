@@ -147,10 +147,13 @@ def initH():
     return H
 
 def initG():
-    a, b, c, d = HyperNode("v1"), HyperNode("v2"), HyperNode("v3"), HyperNode("v4")
-    v = HyperArete("E1", [a, b, d])
-    w = HyperArete("E2", [a, c])
-    G = HyperGraph("H", [a, b, c, d],[v, w])
+    a, b, c, d, e, f, g= HyperNode("v1"), HyperNode("v2"), HyperNode("v3"), HyperNode("v4"), HyperNode("v5"), HyperNode("v6"), HyperNode("v7")
+    v = HyperArete("E1", [a, b, c])
+    w = HyperArete("E2", [a, e])
+    x = HyperArete("E3", [c, e, f])
+    y = HyperArete("E4", [d])
+    G = HyperGraph("G", [a, b, c, d, e, f, g], [v, w, x, y])
     return G
+
 if __name__ == "__main__":
     H = initG()

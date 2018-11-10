@@ -97,15 +97,20 @@ def getMaximalCliques(graph):
 def isCliqueHyperArete(clique, hyperGraph):
     res = False
     for hyperArete in hyperGraph.hyperAretes:
-        if clique == hyperArete.nodes:
-            res = True
+        temp = True
+        for p in list(clique.nodes):
+            temp = temp and p in hyperArete.nodes
+        for q in hyperArete.nodes:
+            temp = temp and p in list(clique.nodes)
+        res = res or temp
+        if res:
             break
     return res
 
 def areCliquesHyperAretes(cliques, hyperGraph):
     res = True
     for clique in cliques:
-        res = res or isCliqueHyperArete(clique, hyperGraph)
+        res = res and isCliqueHyperArete(clique, hyperGraph)
     return res
         
 def getCycles(graph):
@@ -132,9 +137,12 @@ def test():
     print("Teste si les noeuds v2 et v5 sont connexes: ", isConnexe(H, H.getNodes()[1], H.getNodes()[4]), sep="", end="\n______________________________________\n")
     print("Teste si les noeuds v1 et v4 sont connexes: ", isConnexe(H, H.getNodes()[0], H.getNodes()[3]), sep="", end="\n______________________________________\n")
 if __name__=="__main__":
-    H = initH()
+    H = initG()
     print(H)
     print(incidenceGraph(H), end="\n______________________\n")
     print(dualGraph(H), end="\n______________________\n")
     print(primalGraph(H), end="\n______________________\n")
-    print("Test Cliques: ", areCliquesHyperAretes(getMaximalCliques(primalGraph(H)), H), end="\n______________________\n")
+    s = getMaximalCliques(primalGraph(H))
+    for i in s:
+        print(i, end="\n...\n")
+    print("Test Cliques: ", areCliquesHyperAretes((s), H), end="\n______________________\n")
