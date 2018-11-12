@@ -112,12 +112,11 @@ def areCliquesHyperAretes(cliques, hyperGraph):
     for clique in cliques:
         res = res and isCliqueHyperArete(clique, hyperGraph)
     return res
-        
-def getCycles(graph):
+
+def LexBDS(graph):
     """
-    Renvoie les cycles de 4 noeuds ou plus
-    """
-    pass
+    Réalise un Lexical Bread-First Search (Wikipedia)
+    """   
 
 def isAlphaAcyclic(graph):
     """
@@ -146,3 +145,5 @@ if __name__=="__main__":
     for i in s:
         print(i, end="\n...\n")
     print("Test Cliques: ", areCliquesHyperAretes((s), H), end="\n______________________\n")
+    E = LexBDS(primalGraph(H))
+    print(E)
