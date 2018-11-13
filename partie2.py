@@ -1,6 +1,6 @@
 #Partie 2
 
-class Node:
+class HyperNode:
     def __init__(self, value, hyperAretes={}):
         """
         Value : valeur du noeud
