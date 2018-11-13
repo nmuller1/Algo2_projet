@@ -1,29 +1,5 @@
 #Partie 2
 
-class HyperNode:
-    def __init__(self, value, hyperAretes={}):
-        """
-        Value : valeur du noeud
-        hyperAretes : hyper-arêtes qui contiennent le noeud
-        """
-        self.value = value
-        self.hyperAretes = hyperAretes
-            
-    def __str__(self):
-        return str(self.value)
-            
-    def getValue(self):
-        return self.value
-            
-    def setValue(self, v):
-        self.value = v
-            
-    def appendHyperArete(self, h):
-        """
-        Indique que le noeud appartient à l'hyper-arête h
-        """
-        self.hyperAretes.append(h)
-        
 class Node:
     def __init__(self, value):
         """
