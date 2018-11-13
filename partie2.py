@@ -8,12 +8,21 @@ class Node:
         self.value = value
         
     def __str__(self):
+        """
+        Retourne la valeur du noeud convertie en string
+        """
         return str(self.value)
 
     def getValue(self):
+        """
+        Retourne la valeur du noeud
+        """
         return self.value
             
     def setValue(self, v):
+        """
+        Modifie la valeur du noeud
+        """
         self.value = v
         
 class HyperNode(Node):
@@ -21,7 +30,7 @@ class HyperNode(Node):
         """
         hyperAretes : hyper-arêtes qui contiennent le noeud
         """
-        super().__init__(value)
+        super().__init__(value) #Pour initialiser la valeur du noeud
         self.hyperAretes = []
     
     def appendHyperArete(self, h):
@@ -32,6 +41,9 @@ class HyperNode(Node):
             self.hyperAretes.append(h)
             
     def getHyperAretes(self):
+        """
+        Renvoie les hyperAretes auxquelles l'hyperNoeud appartient
+        """
         return self.hyperAretes
 	
 class HyperArete:
@@ -46,41 +58,71 @@ class HyperArete:
             i.appendHyperArete(self)
             
     def __str__(self):
+        """
+        Renvoie le nom de l'hyperArete, suivi des noeuds qu'elle contient
+        """
         return self.getName()+": "+str([str(i) for i in self.nodes])
     
     def getName(self):
+        """
+        Renvoie le nom de l'hyperArete
+        """
         return self.name
     
     def getNodes(self):
+        """
+        Renvoie les noeuds contenus dans l'hyperArete, sous forme de liste de noeuds
+        """
         return self.nodes
 
 class HyperGraph:
-    def __init__(self, name, nodes, hyperAretes):
+    def __init__(self, name, nodes=[], hyperAretes=[]):
         self.name = name
         self.nodes = nodes
         self.hyperAretes = hyperAretes
 		
     def __str__(self):
+        """
+        Renvoie le nom de l'hyperGraphe, suivi des hyperAretes qu'il contient (et des hyperNoeuds qu'il contient)
+        """
         resultat = self.getName()+": \n"
         for i in self.hyperAretes:
             resultat += i.getName()+": "+str([str(p) for p in i.getNodes()])+"\n"
+        for i in self.getNodes(): #Pour l'affichage des noeuds qui n'appartiendraient pas à une hyperArete
+            resultat+=str(i)+" "
+        resultat+="\n"
         return resultat
 
     def getName(self):
+        """
+        Renvoie le nom de l'hyperGraphe
+        """
         return self.name
 
     def addHyperArete(self, h):
+        """
+        Rajoute une hyperArete si elle n'existe pas dans l'hyperGraphe
+        """
         if h not in self.hyperAretes:
             self.hyperAretes.append(h)
 
     def addNode(self, n):
+        """
+        Ajoute un hyperNoeud si il n'existe pas dans l'hyperGraphe
+        """
         if n not in self.nodes:
             self.nodes.append(n)
     
     def getHyperAretes(self):
+        """
+        Renvoie les hyperAretes de l'hyperGraphe, sous forme de liste
+        """
         return self.hyperAretes
     
     def getNodes(self):
+        """
+        Renvoie les hyperNoeuds de l'hyperGraphe, sous forme de liste
+        """
         return self.nodes
 
 class Graph:
@@ -88,6 +130,9 @@ class Graph:
     Cette classe désigne les graphe "simples", c'est-à-dire sans hyper-arêtes
     """
     def __init__(self):
+        """
+        Les noeuds du graphe sont stockés sous forme de dictionnaire où un noeud clé pointe vers des noeuds valeurs
+        """
         self.nodes = {}
         
     def __str__(self):
@@ -101,35 +146,50 @@ class Graph:
         return res
 
     def __eq__(self, other):
+        """
+        Deux graphe sont égaux si leurs noeuds (et donc, ici, leurs arêtes aussi), sont égaux
+        """
         return self.nodes == other.nodes
 
-    def copy(self):
-        new = Graph()
-        for key in self.nodes:
-            new.appendNode(key, self.nodes[key])
-        return new
-
     def size(self):
+        """
+        Renvoie la taille du graphe, son nombre de noeuds
+        """
         return len(list(self.nodes.keys()))
     
     def appendNode(self, node, pointedNodes=0):
+        """
+        Ajoute un noeud au graphe, si il n'est pas déjà dedans
+        """
         if node not in list(self.nodes.keys()) and pointedNodes==0:
             self.nodes[node] = []
         elif node not in self.nodes:
             self.nodes[node] = pointedNodes
 
     def delNode(self, node):
+        """
+        Supprime du graphe le noeud passé en paramètre (si il est dans le graphe)
+        """
         if node in list(self.nodes.keys()):
             del self.nodes[node]
         
     def makePointNode(self, node, otherNode):
+        """
+        Indique qu'un noeud est directement accessible depuis un autre noeud
+        """
         if node in self.nodes and otherNode not in self.nodes[node]:
             self.nodes[node].append(otherNode)
 
     def getNodes(self):
+        """
+        Renvoie le dictionnaire de noeuds
+        """
         return self.nodes
 
     def getVoisins(self, n):
+        """
+        Renvoie la liste des voisins du noeud passé en paramètre
+        """
         if n in list(self.nodes.keys()):
             return self.nodes[n]
 
@@ -147,6 +207,9 @@ def initH():
     return H
 
 def initG():
+    """
+    Seconde fonction de test
+    """
     a, b, c, d, e, f, g= HyperNode("v1"), HyperNode("v2"), HyperNode("v3"), HyperNode("v4"), HyperNode("v5"), HyperNode("v6"), HyperNode("v7")
     v = HyperArete("E1", [a, b, c])
     w = HyperArete("E2", [a, e])
@@ -157,3 +220,4 @@ def initG():
 
 if __name__ == "__main__":
     H = initG()
+    print(H)

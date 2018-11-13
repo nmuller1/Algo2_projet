@@ -126,7 +126,7 @@ def isAlphaAcyclic(graph):
     pass
 
 def test():
-    H = initG()
+    H = initH()
     print("Test des fonctions du fichier Functions.py", sep="", end="\n______________________________________\n")
     print("Graphe\n", H, sep="", end="\n______________________________________\n")
     print("Graphe d'incidence\n",incidenceGraph(H), sep="", end="\n______________________________________\n")
@@ -135,15 +135,10 @@ def test():
     print("Graphe dual\n", dualGraph(H), sep="", end="\n______________________________________\n")
     print("Teste si les noeuds v2 et v5 sont connexes: ", isConnexe(H, H.getNodes()[1], H.getNodes()[4]), sep="", end="\n______________________________________\n")
     print("Teste si les noeuds v1 et v4 sont connexes: ", isConnexe(H, H.getNodes()[0], H.getNodes()[3]), sep="", end="\n______________________________________\n")
-if __name__=="__main__":
-    H = initG()
-    print(H)
-    print(incidenceGraph(H), end="\n______________________\n")
-    print(dualGraph(H), end="\n______________________\n")
-    print(primalGraph(H), end="\n______________________\n")
-    s = getMaximalCliques(primalGraph(H))
+    s = getMaximalCliques(p)
+    print("Maximal Cliques: ")
     for i in s:
         print(i, end="\n...\n")
     print("Test Cliques: ", areCliquesHyperAretes((s), H), end="\n______________________\n")
-    E = LexBDS(primalGraph(H))
-    print(E)
+if __name__=="__main__":
+    test()
