@@ -4,7 +4,7 @@
 class hypergraphe(Object) :
 =======
 class Node:
-	def __init__(self, value, hyperAretes=[]):
+	def __init__(self, value, hyperAretes={}):
 		"""
 		Value : valeur du noeud
 		hyperAretes : hyper-arêtes qui contiennent le noeud
@@ -23,7 +23,7 @@ class Node:
 		
 	def appendHyperArete(self, h):
 		"""
-		Permet d'annoncer que le noeud appartient à l'hyper-arête h
+		Indique que le noeud appartient à l'hyper-arête h
 		"""
 		self.hyperAretes.append(h)	
 	
