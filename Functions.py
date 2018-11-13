@@ -113,30 +113,99 @@ def areCliquesHyperAretes(cliques, hyperGraph):
         res = res and isCliqueHyperArete(clique, hyperGraph)
     return res
 
-def LexBDS(graph):
+def isInSubset(liste, el):
+    p=-1
+    for i in range(len(liste)):
+        if el in liste[i]:
+            p = i
+    return p
+
+def LexOrder(graph):
     """
-    Réalise un Lexical Bread-First Search (Wikipedia)
-    """   
-    sets = [[]]
-    for 
+    Réalise un Lexicographic breadth-first search sur le graphe passé en paramètre
+    """
+    E = [list(graph.getNodes())]
+    output = []
+    while len(E)>0:
+        v = E[0].pop() # Le dernier élément de la premiere liste de E
+        if len(E[0])==0:
+            del E[0]
+        output.append(v)
+        replaced = [False for i in E]
+        for voisin in graph.getVoisins(v):
+            subSet = isInSubset(E, voisin) #subSet contient l'indice où se trouve le voisin
+            if subSet !=-1:
+                if replaced[subSet]==False: #Si on a pas encore crée de T pour ce subset
+                    T = []
+                    replaced[subSet] = T
+                    E.insert(subSet, T) #on insere T juste avant S
+                    replaced.insert(subSet, False) #on met dans replaced (au correspondant de T), False (il n'a pas encore changé, lui)
+                    subSet += 1
+                else:
+                    T = replaced.index(replaced[subSet]) #dans replaced, la case correspondant a S contient T
+                    replaced.insert(subSet, replaced[T])
+                    E.insert(subSet, E[T])
+                    del replaced[T]
+                    del E[T]
+                w = E[subSet].pop(E[subSet].index(voisin))
+                if len(E[subSet])==0:
+                    del E[subSet]
+                E[subSet-1].append(w)
+    return output
 
+def findClosestVoisin(graph, v, ordered):
+    """
+    Renvoie la distance entre l'indice du voisin le plus proche de v et v dans ordered
+    """
+    distance = -1
+    for p in graph.getVoisins(ordered[v]):
+        if p in ordered[:v]:
+            dist = v-ordered.index(p)
+            if dist<distance or distance==-1:
+                distance = dist
+    return distance
 
-Initialize a sequence Σ of sets, to contain a single set containing all vertices.
-Initialize the output sequence of vertices to be empty.
-While Σ is non-empty:
-Find and remove a vertex v from the first set in Σ
-If the first set in Σ is now empty, remove it from Σ
-Add v to the end of the output sequence.
-For each edge v-w such that w still belongs to a set S in Σ:
-If the set S containing w has not yet been replaced while processing v, create a new empty replacement set T and place it prior to S in the sequence; otherwise, let T be the set prior to S.
-Move w from S to T, and if this causes S to become empty remove S from Σ
+def getSubSetVoisinsPrevious(graph, v, ordered, excl = None):
+    """
+    Renvoie le sous-ensemble des voisins de v précédants v dans ordered
+    """
+    res = []
+    for i in graph.getVoisins(ordered[v]):
+        if i in ordered[:v] and i!=excl:
+            res.append(i)
+    return res
+
+def isSubSet(x, y):
+    """
+    Renvoie True si x est sous-ensemble de y, False sinon
+    """
+    res = True
+    for i in x:
+        res = res and i in y
+    return res
+
+def isChordal(graph):
+    ordered = LexOrder(graph)
+    chordal = True
+    for v in range(len(ordered)):
+        w = findClosestVoisin(graph, v, ordered)
+        if w != -1:
+            w = v-w
+            subv = getSubSetVoisinsPrevious(graph, v, ordered, excl=ordered[w])
+            subw = getSubSetVoisinsPrevious(graph, w, ordered)
+            chordal = chordal and isSubSet(subv, subw)
+    return chordal
 
 def isAlphaAcyclic(graph):
     """
     Renvoie True si le graphe est aplha-acyclique (ie. si son graphe primal est cordal, et que toute clique maximale de taille 2 ou plus
     est une hyper-arête dans l'hypergraphe), False sinon
     """
-    pass
+    p = primalGraph(graph)
+    return isChordal(p) and areCliquesHyperAretes(getMaximalCliques(p), graph)
+
+def isHyperTree(graph):
+    return isAlphaAcyclic(dualGraph(graph))
 
 def test():
     H = initH()
@@ -148,10 +217,7 @@ def test():
     print("Graphe dual\n", dualGraph(H), sep="", end="\n______________________________________\n")
     print("Teste si les noeuds v2 et v5 sont connexes: ", isConnexe(H, H.getNodes()[1], H.getNodes()[4]), sep="", end="\n______________________________________\n")
     print("Teste si les noeuds v1 et v4 sont connexes: ", isConnexe(H, H.getNodes()[0], H.getNodes()[3]), sep="", end="\n______________________________________\n")
-    s = getMaximalCliques(p)
-    print("Maximal Cliques: ")
-    for i in s:
-        print(i, end="\n...\n")
-    print("Test Cliques: ", areCliquesHyperAretes((s), H), end="\n______________________\n")
+    print("isAlphaAcyclic:", isAlphaAcyclic(H), end="\n______________________\n")
+    print("isHyperTree: ", isHyperTree(H), end="\n______________________\n")
 if __name__=="__main__":
     test()
