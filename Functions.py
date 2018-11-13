@@ -117,6 +117,19 @@ def LexBDS(graph):
     """
     Réalise un Lexical Bread-First Search (Wikipedia)
     """   
+    sets = [[]]
+    for 
+
+
+Initialize a sequence Σ of sets, to contain a single set containing all vertices.
+Initialize the output sequence of vertices to be empty.
+While Σ is non-empty:
+Find and remove a vertex v from the first set in Σ
+If the first set in Σ is now empty, remove it from Σ
+Add v to the end of the output sequence.
+For each edge v-w such that w still belongs to a set S in Σ:
+If the set S containing w has not yet been replaced while processing v, create a new empty replacement set T and place it prior to S in the sequence; otherwise, let T be the set prior to S.
+Move w from S to T, and if this causes S to become empty remove S from Σ
 
 def isAlphaAcyclic(graph):
     """

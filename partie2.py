@@ -28,14 +28,14 @@ class Node:
 class HyperNode(Node):
     def __init__(self, value):
         """
-        hyperAretes : hyper-arêtes qui contiennent le noeud
+        Value : valeur du noeud
         """
         super().__init__(value) #Pour initialiser la valeur du noeud
-        self.hyperAretes = []
+        self.hyperAretes = [] #hyper-arêtes qui contiennent le noeud
     
     def appendHyperArete(self, h):
         """
-        Permet d'annoncer que le noeud appartient à l'hyper-arête h
+        Indique que le noeud appartient à l'hyper-arête h
         """
         if h not in self.hyperAretes:
             self.hyperAretes.append(h)
@@ -50,7 +50,7 @@ class HyperArete:
     def __init__(self, name, nodes):
         """
         nodes : les noeuds qui sont contenus dans l'hyper-arête
-        Ceux-ci sont modifiés pour indiquer qu'ils soient contenus dans l'hyper-arête
+        Ceux-ci sont modifiés pour indiquer qu'ils sont contenus dans cette nouvelle hyper-arête
         """
         self.name = name
         self.nodes = nodes
