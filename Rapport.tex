@@ -1,0 +1,70 @@
+\documentclass[a4paper]{article}
+
+\usepackage[latin1]{inputenc} 
+\usepackage[T1]{fontenc}      
+\usepackage[francais]{babel}
+\usepackage[top=1cm, bottom=1cm, left=1cm, right=1cm]{geometry}
+\usepackage{makeidx}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{url}
+
+\title{INFO-F203 - Algorithmique 2: Projet 1 \\ Rapport}
+\author{Pascal Tribel \\ Noémie Muller}
+\date{\today}
+\makeindex
+
+\begin{document}
+\maketitle
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
+\newpage
+\part{Sous-arbre de poids maximum}
+
+\section{Introduction}
+
+\section{Choix d'implémentation}
+\subsection{La classe "Tree"}
+La classe Tree a été implémentée sous forme d'un arbre récursif, où les enfants d'un noeud sont eux-mêmes un arbre, stockés dans une liste. Si cette liste est vide, on est alors confronté à une feuille.
+L'intérêt de cette implémentation est d'une part que le code est tout à fait compréhensible et lisible, et que la plupart des opérations se font avec une complexité raisonnable.
+\subsubsection{La méthode somme}
+Cette méthode donne la valeur de la somme de tous les noeuds d'un arbre (c'est-à-dire la somme des sommes de ses sous-arbres). Cette opération de visite qu'une fois chaque noeud, et donc s'exécute avec une complexité de $O(n)$ pour n le nombre de noeuds de l'arbre.
+\subsection{La fonction maxSubTree}
+Cette fonction détermine le sous-arbre maximum de l'arbre passé en paramètre. 
+Sa complexité s'exprime en $O(n^{2}$) pour n le nombre de noeuds de l'arbre (en effet, chaque noeud n'est visité qu'une fois, pour calculer la somme du sous-arbre dont il est racine).
+
+\section{Conclusion}
+L'implémentation de cet exercice a été fait de manière à être la plus compréhensible possible, c'est pourquoi nous n'avons pas utilisé de modules externes. L'objectif était d'entièrement contrôler nos structures de données, en permettant ainsi de nous assurer de sa clarté et de son efficacité.
+
+\newpage
+\part{Les hypergraphes et hypertrees}
+
+\section{Introduction}
+Pour cet exercice, comme pour le précédent, nous avons décidé d'implémenter nous-même les classes, les méthodes et les fonctions, au lieu de les emprunter à des modules. En effet, au-delà de l'intelligibilité du code écrit, cela nous a permis d'entièrement contrôler l'exécution de notre programme. Évidemment, ce choix comporte ses inconvénients: nous ne pouvons être certains d'avoir écrit les algorithmes les plus efficaces, et nous sommes limités quant aux représentations graphiques qui nous sont permises. Néanmoins, il nous a semblé que notre compréhension primait sur ces-dits inconvénients.
+\section{Choix d'implémentation}
+\subsection{Les classes}
+\subsubsection{La classe HyperNode}
+Cette classe hérite de la classe Node, car un hyper-noeud est un noeud qui appartient à une hyper-arête. La complexité de toutes ses méthodes s'exprime en $O(1)$.
+\subsubsection{La classe HyperArete}
+A l'initialisation d'un objet de cette classe, on va marquer dans chaque hyper-noeud de l'hyper-arête qu'il appartient à celle-ci. Aussi, la création d'un tel objet s'exécute avec une complexité exprimée en $O(n)$, pour n le nombre de noeuds qu'il contient. Il en va de même pour la fonction d'affichage.
+Toutes les autres méthodes s'exécutent en $O(1)$.
+
+Le lecteur peut s'étonner de ne voir aucun setter pour cette classe. En effet, nous n'avons pas prévu que la classe serait utilisée en dehors du contexte que nous prévoyons, et de ce fait, un setter n'est pas requis.
+\subsubsection{La classe HyperGraphe}
+Dernière classe de la famille des "hyper", elle est définie par les hyper-noeuds et les hyper-arêtes qu'elle contient.
+Ses méthodes d'expriment toutes en $O(1)$, sauf sont affichage, qui dépend de l'affichage de chacune de ses hyper-arêtes. Cette méthode d'affichage s'exprime donc avec une complexité de $O(n*m)$, pour $n$ le nombre d'hyper-arêtes et $m$ le nombre d'hyper-noeuds de l'hypre-graphe.
+\subsubsection{La classe Node}
+\subsubsection{La classe Graphe}
+\subsection{Les fonctions}
+\subsubsection{incidenceGraph}
+\subsubsection{primalGraph}
+\subsubsection{dualGraph}
+\subsubsection{isCordal}
+\subsubsection{getMaximalClique}
+\subsubsection{getCycles}
+\subsubsection{isAlphaAcyclic}
+\subsubsection{isHyperTree}
+
+\section{Conclusion}
+
+\end{document}
