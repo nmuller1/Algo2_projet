@@ -10,7 +10,7 @@
 \usepackage{url}
 
 \title{INFO-F203 - Algorithmique 2: Projet 1 \\ Rapport}
-\author{Pascal Tribel \\ Noémie Muller}
+\author{Pascal Tribel \\ Noëmie Muller}
 \date{\today}
 \makeindex
 
@@ -32,6 +32,9 @@ Cette méthode donne la valeur de la somme de tous les noeuds d'un arbre (c'est-à
 \subsection{La fonction maxSubTree}
 Cette fonction détermine le sous-arbre maximum de l'arbre passé en paramètre. 
 Sa complexité s'exprime en $O(n^{2}$) pour n le nombre de noeuds de l'arbre (en effet, chaque noeud n'est visité qu'une fois, pour calculer la somme du sous-arbre dont il est racine).
+\subsection{La fonction generateRandomTree}
+Cette fonction génère aléatoirement un arbre. Nous avons arbitrairement fixé le nombre de fils maximum à 3.
+Il s'agit d'une fonction récursive constituée d'une boucle dont le nombre d'itérations varie selon le nombre généré par la fonction randint(). A chaque appel, la fonction crée un objet tree auquel une valeur aléatoire entre -20 et 20 est attribuée ainsi qu'un nombre de fils. Chaque fils est à son tour généré par l'appel de la fonction par elle-même, à l'aide d'une boucle itérative. La fonction retourne un objet tree.
 
 \section{Conclusion}
 L'implémentation de cet exercice a été fait de manière à être la plus compréhensible possible, c'est pourquoi nous n'avons pas utilisé de modules externes. L'objectif était d'entièrement contrôler nos structures de données, en permettant ainsi de nous assurer de sa clarté et de son efficacité.
@@ -107,5 +110,5 @@ Deuxièmement, le stress que cette mauvais gestion occasionne. Il est terriblemen
 A cause cette mauvaise gestion, nous avons donc les résultats prévisibles: un code probablement moins lisible, des algorithmes beaucoup moins efficaces, et un travail qui tente "tout juste" de répondre aux attentes. Nous sommes tout à fait conscients qu'une complexité de $O(n^5)$ pour la deuxième partie est gigantesque, mais, comme l'objectif était de réussir à conclure le travail, nous n'avons pu nous permettre d'améliorer ces algorithmes.
 Néanmoins, nous sommes aussi conscients que cela faisait partie de la difficulté du projet. A nous maintenant, d'en tirer les conclusions nécessaires pour les projets qui suivront.
 
-Pascal Tribel - Noémie Muller
+Pascal Tribel - Noëmie Muller
 \end{document}
