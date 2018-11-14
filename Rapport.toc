@@ -16,14 +16,14 @@
 \contentsline {subsubsection}{\numberline {5.1.4}La classe Node}{3}
 \contentsline {subsubsection}{\numberline {5.1.5}La classe Graph}{3}
 \contentsline {subsection}{\numberline {5.2}Les fonctions}{3}
-\contentsline {subsubsection}{\numberline {5.2.1}incidenceGraph}{3}
-\contentsline {subsubsection}{\numberline {5.2.2}primalGraph}{3}
+\contentsline {subsubsection}{\numberline {5.2.1}incidenceGraph}{4}
+\contentsline {subsubsection}{\numberline {5.2.2}primalGraph}{4}
 \contentsline {subsubsection}{\numberline {5.2.3}dualGraph}{4}
 \contentsline {subsubsection}{\numberline {5.2.4}LexOrder}{4}
 \contentsline {subsubsection}{\numberline {5.2.5}getMaximalCliqueFromNode}{4}
 \contentsline {subsubsection}{\numberline {5.2.6}getMaximalCliques}{4}
 \contentsline {subsubsection}{\numberline {5.2.7}areCliquesHyperAretes}{4}
 \contentsline {subsubsection}{\numberline {5.2.8}isChordal}{4}
-\contentsline {subsubsection}{\numberline {5.2.9}isAlphaAcyclic}{4}
-\contentsline {subsubsection}{\numberline {5.2.10}isHyperTree}{4}
-\contentsline {section}{\numberline {6}Conclusion}{4}
+\contentsline {subsubsection}{\numberline {5.2.9}isAlphaAcyclic}{5}
+\contentsline {subsubsection}{\numberline {5.2.10}isHyperTree}{5}
+\contentsline {section}{\numberline {6}Conclusion}{5}
