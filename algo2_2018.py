@@ -113,8 +113,17 @@ def test_negatif():
 	print(arbre)
 	print(max_subtree(arbre))
 
+def generateRandomTree():
+    """
+    Génere aléatoirement un arbre, d'une hauteur et d'un nombre de noeuds aléatoire
+    """
+    arbre = tree(randint(-20,20))
+    numberOfChilds = randint(0,3)
+    for i in range(numberOfChilds) :
+    	arbre.childs.append(generateRandomTree())
+    return arbre
 
 if __name__ == "__main__":
-	test_enonce()
-	print()
-	test_negatif()
+	arbre = generateRandomTree()
+	print(arbre)
+	max_subtree(arbre)
