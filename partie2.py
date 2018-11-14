@@ -196,7 +196,7 @@ def generateRandomHyperGraph(name):
     nodes = []
     for i in range(numberOfNodes):
         nodes.append(HyperNode(("v"+str(i))))
-    numberOfHyperAretes = randint(2, numberOfNodes)
+    numberOfHyperAretes = randint(0, numberOfNodes)
     hyperAretes = []
     for i in range(numberOfHyperAretes):
         nodesChosen = []
@@ -267,13 +267,6 @@ def isComplet(graph):
         for m in graph.getNodes():
             res = res and isConnexe(graph, n, m)
     return res
-
-def isCordal(graph):
-    """
-    Renvoie True si le graphe est cordal (ie. si tous ses cycles de 4 noeuds ou plus sont cordaux), False sinon
-    --> Fulkerson et Gross
-    """
-    pass
 
 def getMaximalCliqueFromNode(n, graph):
     """

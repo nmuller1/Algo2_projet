@@ -71,12 +71,41 @@ Seulement, pour cette fonction, la complexité dans ce pire cas est alors de $O(n
 Cette fonction permet de créer l'hyperGraphe dual de l'hyperGraph passé en paramètre. Le pire des cas se présentant ici, est le cas où tous les noeuds (de nombre n) appartiennent à des hyper-arêtes contentant n-1 noeuds.
 Dans ce cas, il y a n noeuds et n hyper-arêtes, et la fonction est alors d'une complexité de $(O(n^2)$. 
 Dans le meilleur des cas, où chaque noeud n'appartient à aucune hyper-arête, alors la complexité est de $O(n)$.
-\subsubsection{isCordal}
-\subsubsection{getMaximalClique}
-\subsubsection{getCycles}
+\subsubsection{LexOrder}
+Cette fonction réalise un ordonnancement Lexicographique.
+Elle exécute au plus $n$ fois des opérations de complexité $O(1)$, sauf pour la fonction isInSubset, qui elle a une complexité dans le tous les cas de O(n). Dans le pire des cas, la complexité de cette fonction est alors de $O(n^2)$.
+\subsubsection{getMaximalCliqueFromNode}
+La complexité dans le pire des cas de cette fonction est grande: si le graphe est complet, alors, sa complexité s'exprime en $O(n^4)$: en effet, chaque noeud est ajouté une fois ($n$), puis on teste si le graphe est complet (au plus $n^3$). On conservera néanmoins cette implémentation car dans le cas moyen, le graphe est loin d'être complet, et dès lors sa complexité est loin d'être aussi grande.
+\subsubsection{getMaximalCliques}
+Cette fonction renvoie les cliques maximales du graphe passé en paramètre, de taille 2 au minimum. 
+Pour $n$ le nombre de noeuds du graphe, elle exécute n fois des opérations en temps constant, sauf pour getMaximalCliqueFromNode, dont la complexité est de $O(n^4)$ dans le pire des cas (voir plus haut), d'où sa complexité est de $O(n^5)$. Fort heureusement, ce pire des cas est bien rare, et le cas moyen est largement au-dessous en terme de complexité.
+\subsubsection{areCliquesHyperAretes}
+Cette fonction se sert du résultat de getMaxmalCliques, et vérifie si toutes ces cliques maximales sont aussi des hyper-arêtes dans l'hyperGraph de base. Le pire des cas se présente comme suit: les cliques sont des paires de noeuds, disjointes, tel que le nombre de cliques est de $n/2$ avec n le nombre de noeuds. Dès lors, pour m le nombre d'hyper-arêtes de l'hyperGraph (et dans le pire des cas, qui contiennent chacune 2 hyper-noeuds), la complexité de cette fonction est de $O((n/2)*m*2) = O(n*m)$.
+\subsubsection{isChordal}
+Cette fonction, autre grande fonction pour déterminer si un hyperGraph est un hyperTree, vérifie si un hyperGraph est cordal (autrement dit, si son graphe primal est cordal).
+Elle commence par effectuer un LexOrd, de complexité $O(n^2)$. Ensuite, pour n le nombre de noeuds, elle effectue n fois la fonction findClosestVoisin (d'une complexité dans le pire des cas de $O(n)$, puis la fonction getSubsetVoisinsPrevious, qui a aussi une complexité de $O(n)$, et enfin la fonction isSubset, qui elle encore a une complexité de $O(n)$. Dès lors, la complexité de isChordal est de $O(n^2)$.
 \subsubsection{isAlphaAcyclic}
+Cette fonction détermine l'$\alpha$-acyclicité d'un hyperGraph h. 
+
+Pour n le nombre de noeuds et m le nombre d'hyper-arêtes, on a:
+
+Elle commence par déterminer le graphe primal p de h: complexité de $O(n^3)$.
+Ensuite, elle détermine la cordalité de p: complexité de $O(n^2)$.
+Elle cherche alors les cliques maximales de p: complexité de $O(n^5)$.
+Elle finit par vérifier que ces cliques sont toutes de hyperArêtes: complexité de $O(n*m)$.
+
+La complexité de cette fonction est dès lors, dans le pire des cas, $O(n^5)$.
 \subsubsection{isHyperTree}
+Cette fonction commence par créer l'hyperGraph dual de l'hyperGraph passé en paramètre, puis détermine si il est $\alpha$-acyclique. Alors, sa complexité dans le pire des cas est la même que la fonction précédente, c'est-à-dire $O(n^5)$.
 
 \section{Conclusion}
+Nous avons, évidemment, quelques critiques et remarques à émettre sur le travail dont vous venez de lire le rapport.
+La grande découverte de ce projet a été pour nous, le travail de groupe. Par manque d'organisation, seule une moitié du binôme n'a réellement travaillé sur le projet ainsi que sur le rapport, et de là découlent les difficulté que nous avons rencontré.
+Premièrement, la gestion du temps. Constamment en attente des résultats du travail du binôme, j'ai dû systématiquement rattraper le travail non-fait en dernière minute avant les dead-lines que nous nous étions fixés. 
+Deuxièmement, le stress que cette mauvais gestion occasionne. Il est terriblement difficile d'être efficace, quand on se sent submergé par le travail de deux personnes.
 
+A cause cette mauvaise gestion, nous avons donc les résultats prévisibles: un code probablement moins lisible, des algorithmes beaucoup moins efficaces, et un travail qui tente "tout juste" de répondre aux attentes. Nous sommes tout à fait conscients qu'une complexité de $O(n^5)$ pour la deuxième partie est gigantesque, mais, comme l'objectif était de réussir à conclure le travail, nous n'avons pu nous permettre d'améliorer ces algorithmes.
+Néanmoins, nous sommes aussi conscients que cela faisait partie de la difficulté du projet. A nous maintenant, d'en tirer les conclusions nécessaires pour les projets qui suivront.
+
+Pascal Tribel - Noémie Muller
 \end{document}

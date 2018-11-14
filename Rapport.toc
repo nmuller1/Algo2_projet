@@ -19,9 +19,11 @@
 \contentsline {subsubsection}{\numberline {5.2.1}incidenceGraph}{3}
 \contentsline {subsubsection}{\numberline {5.2.2}primalGraph}{3}
 \contentsline {subsubsection}{\numberline {5.2.3}dualGraph}{4}
-\contentsline {subsubsection}{\numberline {5.2.4}isCordal}{4}
-\contentsline {subsubsection}{\numberline {5.2.5}getMaximalClique}{4}
-\contentsline {subsubsection}{\numberline {5.2.6}getCycles}{4}
-\contentsline {subsubsection}{\numberline {5.2.7}isAlphaAcyclic}{4}
-\contentsline {subsubsection}{\numberline {5.2.8}isHyperTree}{4}
+\contentsline {subsubsection}{\numberline {5.2.4}LexOrder}{4}
+\contentsline {subsubsection}{\numberline {5.2.5}getMaximalCliqueFromNode}{4}
+\contentsline {subsubsection}{\numberline {5.2.6}getMaximalCliques}{4}
+\contentsline {subsubsection}{\numberline {5.2.7}areCliquesHyperAretes}{4}
+\contentsline {subsubsection}{\numberline {5.2.8}isChordal}{4}
+\contentsline {subsubsection}{\numberline {5.2.9}isAlphaAcyclic}{4}
+\contentsline {subsubsection}{\numberline {5.2.10}isHyperTree}{4}
 \contentsline {section}{\numberline {6}Conclusion}{4}
