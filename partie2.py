@@ -88,8 +88,9 @@ class HyperGraph:
         resultat = self.getName()+": \n"
         for i in self.hyperAretes:
             resultat += i.getName()+": "+str([str(p) for p in i.getNodes()])+"\n"
-        for i in self.getNodes(): #Pour l'affichage des noeuds qui n'appartiendraient pas à une hyperArete
-            resultat+=str(i)+" "
+        for i in self.getNodes():
+            if i.getHyperAretes == []:#Pour l'affichage des noeuds qui n'appartiendraient pas à une hyperArete
+                resultat+=str(i)+" "
         resultat+="\n"
         return resultat
 
@@ -145,12 +146,6 @@ class Graph:
                 res += "\n"
         return res
 
-    def __eq__(self, other):
-        """
-        Deux graphe sont égaux si leurs noeuds (et donc, ici, leurs arêtes aussi), sont égaux
-        """
-        return self.nodes == other.nodes
-
     def size(self):
         """
         Renvoie la taille du graphe, son nombre de noeuds
@@ -194,7 +189,10 @@ class Graph:
             return self.nodes[n]
 
 def generateRandomHyperGraph(name):
-    numberOfNodes = randint(5, 15)
+    """
+    Génere aléatoirement un graphe, de taille aléatoire en nombre de noeuds et d'aretes
+    """
+    numberOfNodes = randint(2, 15)
     nodes = []
     for i in range(numberOfNodes):
         nodes.append(HyperNode(("v"+str(i))))
@@ -291,6 +289,9 @@ def getMaximalCliqueFromNode(n, graph):
     return res
     
 def getMaximalCliques(graph):
+    """
+    Renvoie une liste avec les cliques maximales d'un graphe
+    """
     p = []
     maxi = 2
     for noeud in graph.getNodes():
@@ -303,6 +304,9 @@ def getMaximalCliques(graph):
     return p
 
 def isCliqueHyperArete(clique, hyperGraph):
+    """
+    Renvoie True si la clique passée en paramètre est hyperArete dans l'hyperGraphe, False sinon
+    """
     res = False
     for hyperArete in hyperGraph.hyperAretes:
         temp = True
@@ -316,12 +320,18 @@ def isCliqueHyperArete(clique, hyperGraph):
     return res
 
 def areCliquesHyperAretes(cliques, hyperGraph):
+    """
+    Renvoie True si toutes les cliques passées en paramètre sont chacune hyperAretes dans l'hyperGraphe, False sinon
+    """
     res = True
     for clique in cliques:
         res = res and isCliqueHyperArete(clique, hyperGraph)
     return res
 
 def isInSubset(liste, el):
+    """
+    Renvoie l'indice de la sous-liste de liste ou se trouve el, -1 si il n'appartient pas à liste
+    """
     p=-1
     for i in range(len(liste)):
         if el in liste[i]:
@@ -393,6 +403,9 @@ def isSubSet(x, y):
     return res
 
 def isChordal(graph):
+    """
+    Renvoie True si le graphe est cordal, False sinon
+    """
     ordered = LexOrder(graph)
     chordal = True
     for v in range(len(ordered)):
@@ -413,9 +426,20 @@ def isAlphaAcyclic(graph):
     return isChordal(p) and areCliquesHyperAretes(getMaximalCliques(p), graph)
 
 def isHyperTree(graph):
+    """
+    Renvoie True si l'hyperGraphe est un hyperTree, False sinon
+    """
     return isAlphaAcyclic(dualGraph(graph))    
 
 if __name__ == "__main__":
-    H = generateRandomHyperGraph("My Graph")
-    print(H)
-    print(isHyperTree(H))
+    hyperTrees = 0
+    numberOfHyperGraphs=100
+    for i in range(numberOfHyperGraphs):
+        H = generateRandomHyperGraph(("My Graph "+str(i)))
+        #print("L'hyper-graphe:", H, end="\n_____________________\n")
+        #print("Son hyper-graphe dual:", dualGraph(H), end="\n_____________________\n")
+        h = isHyperTree(H)
+        #print("Est-il un hyperTree:", h, end="\n_____________________\n")
+        if h:
+            hyperTrees += 1
+    print("Pourcentage d'hyperTrees:", hyperTrees/numberOfHyperGraphs)

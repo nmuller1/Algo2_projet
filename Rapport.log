@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.3.25)  11 NOV 2018 19:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.3.25)  14 NOV 2018 12:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -325,14 +325,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 18.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 18.
- (./Rapport.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 5.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 5.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 5.
-)
+ (./Rapport.toc)
 \tf@toc=\write4
 \openout4 = `Rapport.toc'.
 
@@ -340,30 +333,37 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] (./Rapport.aux) ) 
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 31.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 31.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 31.
+
+[2] [3] [4] (./Rapport.aux) ) 
 Here is how much of TeX's memory you used:
  3579 strings out of 492995
  51400 string characters out of 6132704
- 123131 words of memory out of 5000000
+ 124131 words of memory out of 5000000
  7061 multiletter control sequences out of 15000+600000
  50206 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,6n,30p,630b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm
-/lm-mathsy.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
-}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/loc
-al/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/201
-7/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2017/texmf-di
-st/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/t
-ype1/public/lm/lmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
-c/lm/lmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr12.
-pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive
-/2017/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on Rapport.pdf (3 pages, 161684 bytes).
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvip
+s/lm/lm-mathsy.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rm
+.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr
+/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive
+/2017/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2017/texm
+f-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2017/texmf-dist/fon
+ts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/p
+ublic/lm/lmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lm
+r12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr17.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/tex
+live/2017/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
+Output written on Rapport.pdf (4 pages, 164972 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

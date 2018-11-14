@@ -50,15 +50,27 @@ A l'initialisation d'un objet de cette classe, on va marquer dans chaque hyper-n
 Toutes les autres méthodes s'exécutent en $O(1)$.
 
 Le lecteur peut s'étonner de ne voir aucun setter pour cette classe. En effet, nous n'avons pas prévu que la classe serait utilisée en dehors du contexte que nous prévoyons, et de ce fait, un setter n'est pas requis.
-\subsubsection{La classe HyperGraphe}
+\subsubsection{La classe HyperGraph}
 Dernière classe de la famille des "hyper", elle est définie par les hyper-noeuds et les hyper-arêtes qu'elle contient.
 Ses méthodes d'expriment toutes en $O(1)$, sauf sont affichage, qui dépend de l'affichage de chacune de ses hyper-arêtes. Cette méthode d'affichage s'exprime donc avec une complexité de $O(n*m)$, pour $n$ le nombre d'hyper-arêtes et $m$ le nombre d'hyper-noeuds de l'hypre-graphe.
 \subsubsection{La classe Node}
-\subsubsection{La classe Graphe}
+Toutes les méthodes de la classe Node se font en $O(1)$. Cette classe est utilisée à la fois dans la classe $Graph$, et dans la classe $HyperNode$ qui hérite d'elle.
+\subsubsection{La classe Graph}
+La classe $Graph$ consiste en un dictionnaire dont les clés sont des noeuds, et les valeurs pointées par ces clés sont les noeuds reliés par une seule arête à ce noeud.
+L'initialisation d'un graphe se fait en $O(1)$. Son affichage, dans le pire des cas (dans le cas d'un graphe complet), se fait en $O(n^2)$. Toutes les autres méthodes de cette classe se font en $O(1)$, car elles ne sont constituées que d'instruction simples et/ou de structures conditionnelles.
 \subsection{Les fonctions}
+Dans cette sous-partie, nous allons étudier l'implémentation et le comportement des différentes fonctions nécessaires pour la grande fonction de cette partie: $isHyperTree()$.
 \subsubsection{incidenceGraph}
+Cette fonction permet de créer le graphe d'incidence de l'hyperGraph passé en paramètre. Le pire des cas se présentant ici, est le cas où tous les noeuds (de nombre n) appartiennent à des hyper-arêtes contentant n-1 noeuds. En effet, nous partont du principe que deux hyper-arêtes contenant exactement les mêmes noeuds n sont en fait la même hyper-arête.
+Dans ce cas, il y a n noeuds et n hyper-arêtes, et la fonction est alors d'une complexité de $(O(n^2)$. 
+Dans le meilleur des cas, où chaque noeud n'appartient à aucune hyper-arête, alors la complexité est de $O(n)$.
 \subsubsection{primalGraph}
+Cette fonction crée le graphe primal de l'hyperGraph passé en paramètre. Le pire des cas, comme pour la fonction précédente, est le cas où tous les noeuds (de nombre n) appartiennent à des hyper-arêtes contentant n-1 noeuds.
+Seulement, pour cette fonction, la complexité dans ce pire cas est alors de $O(n^3)$, car pour chaque noeud (si n est le nombre de noeuds), on regarde chaque hyper-arête (du nombre de n-1), puis on regarde tous les autres noeuds de cette hyper-arête (dont le nombre est de n-1 aussi). Le total tend alors vers $n^3$.
 \subsubsection{dualGraph}
+Cette fonction permet de créer l'hyperGraphe dual de l'hyperGraph passé en paramètre. Le pire des cas se présentant ici, est le cas où tous les noeuds (de nombre n) appartiennent à des hyper-arêtes contentant n-1 noeuds.
+Dans ce cas, il y a n noeuds et n hyper-arêtes, et la fonction est alors d'une complexité de $(O(n^2)$. 
+Dans le meilleur des cas, où chaque noeud n'appartient à aucune hyper-arête, alors la complexité est de $O(n)$.
 \subsubsection{isCordal}
 \subsubsection{getMaximalClique}
 \subsubsection{getCycles}
