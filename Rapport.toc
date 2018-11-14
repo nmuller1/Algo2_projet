@@ -5,6 +5,7 @@
 \contentsline {subsection}{\numberline {2.1}La classe "Tree"}{2}
 \contentsline {subsubsection}{\numberline {2.1.1}La m\'ethode somme}{2}
 \contentsline {subsection}{\numberline {2.2}La fonction maxSubTree}{2}
+\contentsline {subsection}{\numberline {2.3}La fonction generateRandomTree}{2}
 \contentsline {section}{\numberline {3}Conclusion}{2}
 \contentsline {part}{II\hspace {1em}Les hypergraphes et hypertrees}{3}
 \contentsline {section}{\numberline {4}Introduction}{3}
